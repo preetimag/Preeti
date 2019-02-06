@@ -1,0 +1,234 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Azure Web Apps for Developers</title>
+  <link rel="stylesheet" type="text/css" href="styles.css" media="screen">
+<script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/3DBACBDB-2C92-684B-B18A-8B0EA65A8062/main.js" charset="UTF-8"></script></head>
+<body background="bg.png">
+<header>
+
+  <hgroup>
+    <h1><b>Azure Web Apps for Developers</b></h1>
+    <h2>Chapter 1</h2>
+  </hgroup>
+
+  <nav>
+    <ul> 
+      <li><a href="chapter1.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav> 
+</header>
+
+<section>
+
+
+<article>
+
+<h1>Microsoft Azure Web App</h1>
+
+<h2>Introduction</h2>
+
+<p>This report starts by introducing Azure Web Apps and then creating resources using Azure Resource groups followed by providing details into app sevice types/plans by implementing it in different scenarios. A detailed discussion on storing and retrieving application settings and connection strings followed by steps to add deployment slots and concluded with RBAC and assigning an user persmission to resources.</p>
+
+<h2 style="color:red;">Changes made in this report</h2>
+
+<p><i>I have changed text alignment, text color, text size, font- size, font-family and colors of the header, body and section. Changed the color, radius, border and padding size of aside. I have created hyperlinks which takes to the corresponding pages owing to the relative paths. I have added background image for body and section.</i> </p>
+
+<h2>Azure Resource Group</h2>
+
+<p>It is a logical container for grouping new or existing resources which will be associated when creating any resource.Example a website with a front end resources for users and database resources to store data. By grouping resources this way simplifies implementation and management by ensuring a resource exist in only one group.However, it can be linked in the portal. Example a SQL database shared between multiple resource groups.</p> 
+
+<figure>
+  <img src="template.png" alt="Image of an Azure Resource Group Template">
+  <figcaption>Figure 2.Azure Resource Group Template
+</figcaption>
+</figure>
+
+<h2>App Service Plans</h2>
+
+<p>It allows the user to define based on the region and one of five pricing tiers explained below, which can be shared across app service types. 
+<ol>
+<li><b>Free</b> The free tier has limited compute and network bandwidth because the resources are shared and it is intended for evaluation purposes.</li>
+<li><b>Shared</b> The shared tier also shares resources but has increased compute and network bandwitdth intended for low traffic sites.</li>
+<li><b>Basic</b>The basic tier has dedicated vitual machine with capacity to scale by increasing number of course and RAM, intended to host Web App with no limits.</li>
+<li><b>Standard</b> The standard tier has all the feautes of the basic and also enables Azure Web App features such as deployment slots, automated backups etc.</li>
+<li><b>Premium</b>The premium tier has same features as standard with capacity for increase.</li> 
+</ol></p>  
+
+<p>At anytime the pricing tier for your plan can be changed without creating a new one. This gives the option of starting in free tier and upgrading as development requirements expand.</p>
+
+<h2>Create an Azure Web App using the Azure portal</h2>
+
+<p>The Azure portal has user interface to create and manage resources in your subscription. By following the below steps you will have Web App environment with SQL database for publishing Web Application such as ASP.NET MVC application.</p>
+
+<h3>Create a Web App and SQL Database</h3>
+<p><ul>
+<li>Click <b>+new</b> button after signing in to the portal.</li>
+<li>Select <b>Web+ mobile</b> option in create blade and click <b> Azure Marketplace </b></li>
+<li>Select <b>Web App+SQL</b> option to open a blade describing the resources that will be created. Click <b>Create</b> button at the end.</li>
+<li>Specify the Azure Resource group name and select <b>Web App(Configure required settings)</b> to open Web App blade </li>
+</ul> </p>
+
+<h3>Configure require Web App settings</h3>
+<p>
+<ul>
+<li>Specify a globally unique URL created in *.AzureWebsites.domain for the Web App.</li>
+<li>Choose an existing App service plan or create a new one using the pricing tier and location options by clicking <b> Viwe All</b> link.</li>
+<li>Apply the settings and click <b>OK</b> button.</li>
+</ul>
+</p>
+
+<h3>Configure required SQL database settings</h3>
+
+<p>
+<ul>
+<li>Select <b>Database(Configure required settings)</b> option and select existing database if u have one or select new database.</li>
+<li>If new dattabase is selected choose pricing tiers and select <b>Server(Configure required settings).</b></li>
+<li>Specify the name for the server and provide admin credentials and apply the server and database settings by clicking the <b>OK</b> button.</li>
+<li>Click the create button whcih will be enabled after following the above steps.</li>
+</ul>
+</p>
+
+<h3>Add an Azure redis cache to the Azure Resource Group</h3>
+
+<p>
+<ul>
+<li>You can add an Azure redis cache by clicking the <b>Add</b> button to provide levels of performance and features in easy way to use.</li>
+<li>In new resource blade select <b>redis cache</b> option and click <b>Create</b> button to begin configuring the resource</li>
+<li>Enter a globally unique DNS name and choose pricing and location</li>
+<li>After adding the redis cache clcik the resource group icon to see all the resouces including redis cache instead of the summary part of the resource group</li>
+</ul>
+</p>
+
+<h3>Create an Azure Web App using visual studio</h3>
+
+<p>There are several ways to create a web app by using visual studio from simple Dev/Test scenarios to using server explorer or creating web apps by ASP.NET Web application template. Perhaps the most feature-rich approach is by using cloud deployment project template. The ASP.NET uses Azure SDK tools while ware and software to follow these standards so that products from different vendors could work together seamlessly.  Perhaps one of the deployment project uses powershell scripts and JASON files.</p>
+
+<h3>Create a Web App by using server explorer</h3>
+
+<p>
+<ul>
+<li>Open the server explorer window by clicking <b>view > server explorer</b> after connecting to your <b>azure subscription.</b></li>
+<li>To create a new web app, right click the app service mode and select <b>create new site</b>.</li>
+<li>Though there are many limitations this technique introduces you to server explorer, Azure subscription and web app environment.</li>
+</ul>
+</p>
+
+<h3>Create a web app by using ASP.NET web application template</h3>
+
+<p>
+<ul>
+<li>From visual studio menu select <b>file > new > project > templates >ASP.NET web application</b>.</li>
+<li>The authentication defaults to individual user accounts but you can change by clicking <b>change authentication</b> button to he following options.</li>
+</ul>
+<ol>
+<li><b>No authentication</b> do not require users to sign in.</li>
+<li><b>Invdividual user aaccounts</b> store user profiles in a SQL database.</li>
+<li><b>Work and school accounts</b> for applications that will authenticate users against at your directory.</li>
+<li><b>Windows authentication</b> for applications in a traditional intranet environment. </li>
+</ol>
+<ul>
+<li>When your read to publish the application select <b>build > publish < your project name > </b> from main menu.</li>
+</ul>
+</p>
+
+<h3>Create a web app using azure resource group template</h3>
+
+<p>
+<ul>
+<li>From visual studio menu select <b>file > new > project > templates > azure resource group template</b>.</li>
+<li>Select <b>Web App+SQL</b> and then <b>Database(Configure required settings)</b> option and select existing database if u have one or select new database.</li>
+<li>The contents of the deployment project are grouped as follows.</li>
+</ul>
+<ol>
+<li><b>Scripts</b> This folder contains powershell scripts that is used to fully automate creating the web app.</li>
+<li><b>Templates</b> This folder contains two JSON files, the WebSiteSQLDatabase.json file and the WebSiteSQLDatabase.param.dev.json file</li>
+<li><b>Tool</b> This folder contains a copy of AzCopy.exe and is used to copy files to an Azure Storage Account used during deployment. </li>
+</ol>
+</article>
+
+<hr>
+
+<article>
+
+<h1>Connection strings and application strings</h1>
+
+<p>It was common practice to store application settings and connection strings in the web.config file for an application, by encripting sensitive information portions of the file. However, sensitive information checked into your source control system that the team has access.</p>
+<br>
+<p>Azure Web Apps offers a better solution whereby your application settings and connection strings can be stored in the web app and then retrieved by your application at runtime by using Role Based Access Control (RBAC), you can restrict access to the production environment.</p> 
+
+<h2>Set connection strings and app settings in the environment </h2>
+
+<p>
+<ul>
+<li> Right-click the web app and select the option to <b>View Settings</b>. Edit the configuration for the web app by clicking the <b>Configuration tab</b>.</li>
+<li> Scroll down to the Connection Strings section to see the connection string for the SQL database.</li>
+<li>There are four database types in database type column.</li>
+</ul>
+<ol>
+<li>SQL Azure / SQL Database Indicates the connection string is for a SQL database</li>
+<li>SQL Server Indicates the connection string is for a SQL server such as an Azure Virtual Machine (or cluster) running SQL Server.</li> 
+<li>MySQL Indicates the connection string is for a MySQL database.</li>
+<li>Custom A connection string to essentially any storage resource.</li>
+</ol>
+</p>
+
+<h2>Retrieve connection strings and app settings from the environment</h2>
+<p> In your application code, you can retrieve the connection strings and app settings by using the ConfigurationManager class. If you are running your application locally, it will retrieve the values for connection strings and app settings from your configuration files. If you are running the application in Azure, it will retrieve the values for connection strings and app settings from the environment.It is important to note that this strategy works only if you use the same names for connection strings and app settings in your configuration files as you do in your web app environment. When you do, the Azure web app environment setting will take precedence over a setting of the same name in a configuration file. If the setting is not defined in the web app environment, then ConfigurationManager will return the value from the configuration file if it has been set.</p>
+</article>
+
+<hr>
+
+<article>
+
+<h1>Add a deployment slot for an Azure Web App</h1>
+
+<p> A deployment slot is an independent web app with its own content, configuration, and even a unique host name and it functions just like any other web app.</p>
+
+<h2>Scale to a Standard App Service Plan </h2>
+
+<p>
+<ul>
+<li>Deployment slots are available in Standard with up to 5 deployment slots, and Premium provides up to 20, pricing tiers</li>
+<li>To change the pricing tier, click <b> Browse > Web Apps</b> and click the <b>Pricing Tier</b></li>
+<li>In the Pricing Tier blade, select the <b>S1 Standard pricing tier</b> and then click the <b>Select</b> button to apply the change.</li>
+<figure>
+  <img src="slot.jpg" alt="A diagram of deployment slot table">
+  <figcaption>Figure 1. Deployment Slot Table.</figcaption>
+</figure>
+<li>In the Web App blade, scroll down to the Deployment section and click the <b>Deployment</b> slots to add a deployment slot.</li>
+</ul>
+</p>
+
+
+
+<h2>Role Based Access Control</h2>
+<p>Role Based Access Control (RBAC) is an access control feature in the Azure platform that enables you to manage access to resources in your Azure subscription. With RBAC, you are able to get granular with your access permissions so that only users (or groups) have access to the resources they need.RBAC can be managed at the subscription level by using three built-in roles provided by the Azure platform:<ul>
+<li><b>Owner</b> Can create and manage resources of all types, including managing access for child resources. </li> 
+<li><b>Contributor</b> Can create and manage resources but cannot add or delete role assignments for users. </li>
+<li><b>Reader</b>Can read resources but cannot read secrets. For Azure Web Apps, secrets would be things such as application settings, connection strings, and deployment credentials.</li>
+</ul>
+</p>
+
+<aside>
+<h2>Summary</h2>
+This chapter started with an introduction to Azure Resource Groups and App Service Plans and then applied that knowledge to demonstrate different scenarios for creating Azure Web Apps and resources.</aside>
+
+<nav>
+    <ul>
+      <li><a href="about.html">Next Page</a></li>
+          </ul>
+  </nav>
+
+</article>
+
+</section>
+
+<footer>
+<small>Copyright © 2019 Preeti Magesh</small>
+</footer>
+</body>
+</html>
